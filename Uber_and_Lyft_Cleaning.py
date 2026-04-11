@@ -16,7 +16,10 @@ df_clean['time_stamp'] = df_clean['time_stamp'] // 1000
 
 #Converting unix timestamp to mm:dd:yyyy hh:mm
 df_clean['time_stamp'] = pd.to_datetime(df_clean['time_stamp'], unit='s')
-df_clean['time_stamp'] = df_clean['time_stamp'].dt.strftime('%m:%d:%Y %H:%M')
+df_clean['year'] = df_clean['time_stamp'].dt.year
+df_clean['month'] = df_clean['time_stamp'].dt.month
+df_clean['dayofweek'] = df_clean['time_stamp'].dt.dayofweek
+df_clean['hour'] = df_clean['time_stamp'].dt.hour
 
 #Save as new csv
 df_clean.to_csv('cleaned_cab_rides.csv', index=False)
